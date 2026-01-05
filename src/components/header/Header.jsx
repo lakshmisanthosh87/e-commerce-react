@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -19,9 +20,11 @@ const Header = () => {
         </nav>
 
         {/* Action Button */}
-        <button className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg text-sm font-semibold transition">
-          Cart
-        </button>
+         <Link to="/cart">
+          <button className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg text-sm font-semibold transition">
+            Cart
+          </button>
+        </Link>
 
       </div>
     </header>

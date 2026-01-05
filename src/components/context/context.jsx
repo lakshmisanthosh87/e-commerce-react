@@ -13,12 +13,12 @@ const ProductProvider = ({ children }) => {
     }, [])
 
 
-    
+
     const fetchProducts = async () => {
         try {
             const res = await axios.get("https://dummyjson.com/products")
             console.log(res);
-            
+
             setProducts(res.data.products)
         } catch (error) {
             console.log(error)

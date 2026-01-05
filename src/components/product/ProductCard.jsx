@@ -1,7 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { useContext ,useState} from "react";
+import { CartContext } from "../context/CartContext";
 const ProductCard = ({ product }) => {
+
+  
+  const { addToCart } = useContext(CartContext);
+  const [added, setAdded] = useState(false);
+  
+  // console.log(product);
+
   if (!product) return null;
 
   return (
@@ -11,8 +19,8 @@ const ProductCard = ({ product }) => {
       {/* Image */}
       <div className="h-56 bg-gray-100 flex items-center justify-center p-4">
         <img
-          src={product.thumbnail}
-          alt={product.title}
+          src={product?.thumbnail}
+          alt={product?.title}
           className="h-full object-contain transition-transform duration-300 hover:scale-105"
         />
       </div>
@@ -22,22 +30,22 @@ const ProductCard = ({ product }) => {
 
         {/* Title */}
         <h2 className="text-sm font-semibold text-gray-800 line-clamp-2">
-          {product.title}
+          {product?.title}
         </h2>
 
         {/* Rating */}
         <div className="inline-flex items-center bg-green-600 text-white 
                         text-xs px-2 py-1 rounded-full">
-          {product.rating} ★
+          {product?.rating} ★
         </div>
 
         {/* Price */}
         <div className="flex items-center gap-2">
           <span className="text-lg font-bold text-gray-900">
-            ₹{product.price}
+            ₹{product?.price}
           </span>
           <span className="text-sm line-through text-gray-400">
-            ₹{product.price + 500}
+            ₹{product?.price + 500}
           </span>
           <span className="text-sm text-green-600 font-semibold">
             20% OFF
@@ -46,12 +54,13 @@ const ProductCard = ({ product }) => {
 
         {/* Buttons */}
         <div className="grid grid-cols-2 gap-3 pt-2">
-          <button className="bg-blue-600 text-white text-sm py-2 rounded-xl
+          
+          <button onClick={() => { addToCart(product), setAdded(true); }} className="bg-blue-600 text-white text-sm py-2 rounded-xl
                              hover:bg-blue-700 transition font-semibold">
             Add to Cart
           </button>
 
-          <Link to={`/product/${product.id}`}>
+          <Link to={`/product/${product?.id}`}>
             <button className="w-full border border-blue-600 text-blue-600 
                                text-sm py-2 rounded-xl font-semibold
                                hover:bg-blue-50 transition">

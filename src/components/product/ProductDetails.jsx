@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
-
+import {  useParams } from 'react-router-dom'
+import { CartContext } from '../context/CartContext'
+import { useContext } from 'react'
 const ProductDetails = () => {
   const { id } = useParams()
   const [data, setData] = useState(null)
+  const { addToCart } = useContext(CartContext);
+  const [added, setAdded] = useState(false);
+
+
 
   useEffect(() => {
     fetchProduct()
@@ -84,14 +89,22 @@ const ProductDetails = () => {
           </p>
 
           <div className="flex gap-4 pt-4">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition">
+
+            <button onClick={() => { addToCart(data), setAdded(true); }} className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition">
               Add to Cart
             </button>
+
 
             <button className="border border-blue-600 text-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition">
               Buy Now
             </button>
           </div>
+          {added && (
+            <p className="text-green-600 font-medium">
+              ✅ Product added to cart successfully
+            </p>
+          )}
+
 
         </div>
 

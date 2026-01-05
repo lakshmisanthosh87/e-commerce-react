@@ -3,6 +3,7 @@ import Footer from './components/footer/Footer'
 import Home from './pages/Home'
 import ProductDetails from './components/product/ProductDetails'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Cart from './pages/Cart'
 
 const App = () => {
   return (
@@ -10,6 +11,8 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
+
         <Route path="/product/:id" element={<ProductDetails />} />
       </Routes>
       <Footer />
